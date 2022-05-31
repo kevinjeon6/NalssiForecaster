@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var cityName = ""
     @State private var isEditing = false
     @ObservedObject var model = WeatherViewModel()
+    @State private var isCelsius = false
     @FocusState private var isFocused: Bool
     
     //MARK: - Computed Properties
@@ -23,6 +24,45 @@ struct ContentView: View {
         }
         return Array(hourly.prefix(13))
     }
+    
+    var selectedTempeartureUnit: some View {
+        Menu {
+            Picker("", selection: $isCelsius) {
+                Text("Fahrenheit °F")
+                    .tag(false)
+                Text("Celsius °C")
+                    .tag(true)
+            }
+        } label: {
+            Image(systemName: "list.dash")
+                .foregroundColor(.white)
+        }
+    }
+    
+    var searchField: some View {
+        withAnimation {
+            Button {
+                isEditing = false
+                cityName = ""
+            } label: {
+                Text("Cancel")
+                    .foregroundColor(.white)
+            }
+            .padding(.trailing, 10)
+            .transition(.move(edge: .trailing))
+        }
+    }
+    
+    
+    //MARK: - Methods
+    func convertTemp(_ temp: Double) -> Double {
+        if isCelsius == true {
+            return ((temp - 32) * (5/9))
+        } else {
+            return temp
+        }
+    }
+    
     
     var body: some View {
         NavigationView {
@@ -44,16 +84,7 @@ struct ContentView: View {
                             }
                         
                         if isEditing {
-                            Button {
-                                isEditing = false
-                                cityName = ""
-                            } label: {
-                                Text("Cancel")
-                            }
-                            .padding(.trailing, 10)
-                            .transition(.move(edge: .trailing))
-                            .animation(.default)
-                           
+                         searchField
                         }
                     }//HStack
                     .padding()
@@ -110,15 +141,35 @@ struct ContentView: View {
                             
                         }//VStack
                         .padding()
+                    
+                    GeometryReader {
+                        geo in
+                        
+                        ScrollView {
+                            VStack(spacing: 20) {
+                                ForEach(model.weatherData?.daily ?? []) { d in
+                                    HStack(){
+                                        
+                                        Text("\(Constants.dtDaily(d.dt))")
+                                        Spacer()
+                                        Text(String(format: "Low: %.f°", convertTemp(d.temp.min)))
+                                        Spacer()
+                                        Text(String(format: "High: %.f°", convertTemp(d.temp.max)))
+                                        
+                                    }
+                                }
+                            }
+                            .padding()
+                        }
+                    }//geometry reader
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .edgesIgnoringSafeArea(.bottom)
                 }//VStack
                 .navigationTitle("NalssiForecaster")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            print("Choose celsius or fahrenheit")
-                        } label: {
-                            Image(systemName: "list.dash")
-                        }//button
+                       selectedTempeartureUnit
                         
                     }//toolbar item
                 }
