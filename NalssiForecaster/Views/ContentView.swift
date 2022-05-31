@@ -128,12 +128,7 @@ struct ContentView: View {
                                                 Text(String(format: "%.f°", convertTemp(hour.temp)))
                                             }
                                         }//VStack
-                                        .foregroundColor(.white)
-                                        .font(.headline)
-                                        .frame(width: 100, height: 100)
-                                        .border(Color.mint)
-                                        .background(.mint.opacity(0.5))
-                                        .cornerRadius(5)
+                                        .modifier(TileModifier())
                                             
                                     }
                                 }
@@ -164,7 +159,7 @@ struct ContentView: View {
                             .padding()
                         }
                     }//geometry reader
-                    .background(Color.white)
+                    .background(Color.backgroundColor)
                     .cornerRadius(12)
                     .edgesIgnoringSafeArea(.bottom)
                 }//VStack

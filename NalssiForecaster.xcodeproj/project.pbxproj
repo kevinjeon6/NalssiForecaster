@@ -16,6 +16,7 @@
 		7443B385284693CC008DCFFE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443B384284693CC008DCFFE /* Constants.swift */; };
 		7443B388284695B0008DCFFE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443B387284695B0008DCFFE /* ColorExtension.swift */; };
 		7443B38B2846A13D008DCFFE /* TempTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443B38A2846A13D008DCFFE /* TempTextModifier.swift */; };
+		7443B38D2846A202008DCFFE /* TileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7443B38C2846A202008DCFFE /* TileModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		7443B384284693CC008DCFFE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7443B387284695B0008DCFFE /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7443B38A2846A13D008DCFFE /* TempTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTextModifier.swift; sourceTree = "<group>"; };
+		7443B38C2846A202008DCFFE /* TileModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				7443B38A2846A13D008DCFFE /* TempTextModifier.swift */,
+				7443B38C2846A202008DCFFE /* TileModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				7443B385284693CC008DCFFE /* Constants.swift in Sources */,
 				7443B37128467A22008DCFFE /* ContentView.swift in Sources */,
+				7443B38D2846A202008DCFFE /* TileModifier.swift in Sources */,
 				7443B382284691F4008DCFFE /* WeatherViewModel.swift in Sources */,
 				7443B38B2846A13D008DCFFE /* TempTextModifier.swift in Sources */,
 				7443B388284695B0008DCFFE /* ColorExtension.swift in Sources */,
