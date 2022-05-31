@@ -89,7 +89,6 @@ struct ContentView: View {
                     }//HStack
                     .padding()
           
-                        VStack() {
                           
                                 VStack(spacing: 4) {
                                     
@@ -110,34 +109,33 @@ struct ContentView: View {
                                     
                                     Text(String(format: "Feels like: %.f°", convertTemp(model.weatherData?.current.feels_like ?? 0.0)))
                                         .modifier(TempTextModifier(size: 26))
+                                        .padding(.bottom, 10)
                                     
+                             
+                                         
+                                         ScrollView(.horizontal) {
+                                             HStack(spacing: 20) {
+                                                 ForEach(hourlyFirstTwelve) {
+                                                         hour in
+                                                     VStack(spacing: 10) {
+                                                         Text("\(Constants.dtConversion(hour.dt))")
+                                                         HStack {
+                                                             Image(systemName: "thermometer")
+                                                             Text(String(format: "%.f°", convertTemp(hour.temp)))
+                                                         }
+                                                     }//VStack
+                                                     .modifier(TileModifier())
+                                                         
+                                                 }
+                                             }
+                                         }
+                                   
                                     
                                 }//VStack
                                 .padding([.trailing, .bottom], 20.0)
-                                
-                       Spacer()
-                            
-                            ScrollView(.horizontal) {
-                                HStack(spacing: 20) {
-                                    ForEach(hourlyFirstTwelve) {
-                                            hour in
-                                        VStack(spacing: 10) {
-                                            Text("\(Constants.dtConversion(hour.dt))")
-                                            HStack {
-                                                Image(systemName: "thermometer")
-                                                Text(String(format: "%.f°", convertTemp(hour.temp)))
-                                            }
-                                        }//VStack
-                                        .modifier(TileModifier())
-                                            
-                                    }
-                                }
-                            }
+
                             Spacer()
-                            
-                        }//VStack
-                        .padding()
-                    
+        
                     GeometryReader {
                         geo in
                         
