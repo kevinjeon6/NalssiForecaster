@@ -94,10 +94,15 @@ struct ContentView: View {
                                 VStack(spacing: 4) {
                                     
                                     
-                                    Text("\(Constants.tempToString(model.weatherData?.current.temp ?? 0.0))")
-                                        .foregroundColor(.white)
-                                        .bold()
+                                    HStack {
+                                        Text(String(format: "%.f°", convertTemp(model.weatherData?.current.temp ?? 0.0))
+                                        )
+                                            .foregroundColor(.white)
+                                            .bold()
                                         .font(.system(size: 60))
+                                        
+                                        Text(isCelsius ? "C" : "F")
+                                    }
                                     
                                     
                                     Text(model.weatherData?.current.weather.first?.description ?? "Weather Description")
@@ -105,14 +110,14 @@ struct ContentView: View {
                                         .font(.system(size: 22))
                                     
                                     
-                                    Text("Feels like: \(Constants.tempToString(model.weatherData?.current.feels_like ?? 0.0))")
+                                    Text(String(format: "Feels like: %.f°", convertTemp(model.weatherData?.current.feels_like ?? 0.0)))
                                         .foregroundColor(.white)
                                         .bold()
                                         .font(.system(size: 26))
                                     
                                     
                                 }//VStack
-                                .padding(.trailing, 20.0)
+                                .padding([.trailing, .bottom], 20.0)
                                 
                        Spacer()
                             
@@ -124,7 +129,7 @@ struct ContentView: View {
                                             Text("\(Constants.dtConversion(hour.dt))")
                                             HStack {
                                                 Image(systemName: "thermometer")
-                                                Text("\(Constants.tempToString(hour.temp))")
+                                                Text(String(format: "%.f°", convertTemp(hour.temp)))
                                             }
                                         }//VStack
                                         .foregroundColor(.white)
@@ -149,13 +154,14 @@ struct ContentView: View {
                             VStack(spacing: 20) {
                                 ForEach(model.weatherData?.daily ?? []) { d in
                                     HStack(){
-                                        
                                         Text("\(Constants.dtDaily(d.dt))")
+                                            .fontWeight(.bold)
                                         Spacer()
                                         Text(String(format: "Low: %.f°", convertTemp(d.temp.min)))
+                                            .fontWeight(.bold)
                                         Spacer()
                                         Text(String(format: "High: %.f°", convertTemp(d.temp.max)))
-                                        
+                                            .fontWeight(.bold)
                                     }
                                 }
                             }
