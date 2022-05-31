@@ -97,23 +97,19 @@ struct ContentView: View {
                                     HStack {
                                         Text(String(format: "%.f°", convertTemp(model.weatherData?.current.temp ?? 0.0))
                                         )
-                                            .foregroundColor(.white)
-                                            .bold()
-                                        .font(.system(size: 60))
+                                        .modifier(TempTextModifier(size: 60))
                                         
                                         Text(isCelsius ? "C" : "F")
+                                            .modifier(TempTextModifier(size: 50))
                                     }
                                     
                                     
                                     Text(model.weatherData?.current.weather.first?.description ?? "Weather Description")
-                                        .foregroundColor(.blue)
-                                        .font(.system(size: 22))
+                                        .modifier(TempTextModifier(size: 22))
                                     
                                     
                                     Text(String(format: "Feels like: %.f°", convertTemp(model.weatherData?.current.feels_like ?? 0.0)))
-                                        .foregroundColor(.white)
-                                        .bold()
-                                        .font(.system(size: 26))
+                                        .modifier(TempTextModifier(size: 26))
                                     
                                     
                                 }//VStack
