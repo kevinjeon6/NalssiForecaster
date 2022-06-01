@@ -9,4 +9,5 @@ This project is a Weather app built with SwiftUI to find the weather data. It pr
 
 
 
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/80538229/171500292-42e1867f-0c5c-43e0-b113-e8052b421006.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/80538229/171500500-bd0c7553-c4ba-4f2c-97bb-755cf42c86fe.gif)
+
